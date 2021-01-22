@@ -25,7 +25,6 @@ function check() {
     let password = document.getElementById("password").value;
     let passwdErr = document.getElementById("passwdErr");
 
-    //admins info
     let user_name = "admin";
     let user_password = "admin";
     if (login !== user_name) {
@@ -35,6 +34,6 @@ function check() {
     } else {
         loginErr.innerHTML = " ";
         passwdErr.innerHTML = " ";
-        window.location.href = '/index.html';
+        window.location.href = '../views/index.html';
     }
 }

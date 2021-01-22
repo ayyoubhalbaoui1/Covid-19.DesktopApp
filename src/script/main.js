@@ -36,7 +36,7 @@ $(function() {
             });
         },
         error: function() {
-            alert('error');
+            alert('err');
         }
     })
 
