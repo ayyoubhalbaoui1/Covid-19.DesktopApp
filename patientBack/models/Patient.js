@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
 const PatientSchema = new mongoose.Schema({
     first_name:{
         type:String,
@@ -11,11 +16,14 @@ const PatientSchema = new mongoose.Schema({
     },
     CIN:{
         type:String,
+        unique:true,
         required:true
     },
     email:{
         type:String,
-        required:true
+        unique:true,
+        required:true,
+        validate: [validateEmail, 'Veuillez remplir une adresse e-mail valide']    
     },
     phone:{
         type:String,
