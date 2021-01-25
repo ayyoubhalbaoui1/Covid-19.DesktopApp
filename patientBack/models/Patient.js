@@ -22,7 +22,6 @@ const PatientSchema = new mongoose.Schema({
     email:{
         type:String,
         unique:true,
-        required:true,
         validate: [validateEmail, 'Veuillez remplir une adresse e-mail valide']    
     },
     phone:{
