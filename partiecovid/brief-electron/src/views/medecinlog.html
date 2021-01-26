@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/index.css" />
+    <title>Connexion</title>
+  </head>
+  <body>
+    <div class="row">
+      
+      <div class="col-md-5 m-auto">
+        <div class="mb-3">
+         <center> <label class="form-label">Email</label> </center>
+          <input type="email" class="form-control" id="username" placeholder="Entrer Votre Email"/>
+          <div id="erreuremail" class="form-text text-danger"></div>
+        </div>
+        <div class="mb-3">
+        <center> <label class="form-label">Mot de Passe</label> </center>
+          <input type="password" class="form-control" id="password" placeholder="Enter Password "/>
+          <div id="erreurmdp" class="form-text text-danger"></div>
+        </div>
+        <button type="submit" class="btn btn-success btn-block" id="login_btn" onclick="loginmedecin()">Connexion</button>
+        <br />
+        <p><a id="backkk" href="index.html" class="btn btn-danger">Retour</a></p>
+      </div>
+    </div>
+    <script src="../js/medecinlog.js"></script>
+  </body>
+</html>
