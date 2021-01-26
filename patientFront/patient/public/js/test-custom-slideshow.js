@@ -1,26 +1,4 @@
-
-var questiontAPI = 'http://localhost:3000/patient/'+localStorage.getItem("id")+'/test';
-
-// fetch all data patient
-function fetchDataQuestion() {
-    fetch(questiontAPI)
-    .then(result => {
-        return result.json();
-    }).then(data =>{
-        console.log(data);
-        const html = data.map(questions =>{
-            return `${questions.question} ?<br>`;
-        }).join();
-        document.querySelector("#getQuestion").insertAdjacentHTML("afterbegin", html);
-    }).catch((err) => {
-        console.log('message error :'+ err)
-    });
-}
-
-fetchDataQuestion();
-
 (function() {
-    
     var questions = [{
         question: "Fièvre (Temérature mesurée > 38",
         choices: ['Non','Oui'],
@@ -31,57 +9,56 @@ fetchDataQuestion();
         choices: ['Non','Oui'],
         reponde: 1
     },
-    // {
-    //     question: "Difficultés à respirer",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Maux de gorge",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Rhinite",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Douleur dans les muscles (courbatures)",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Fatigue importante",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Maux de téte",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Diarrhées",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Nausées et/ou vomissements",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Anosmie (perte de l'odorat)",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // },
-    // {
-    //     question: "Agueusie (Perte du gout)",
-    //     choices: ['Non','Oui'],
-    //     reponde: 1
-    // }
-    ];
+    {
+        question: "Difficultés à respirer",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Maux de gorge",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Rhinite",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Douleur dans les muscles (courbatures)",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Fatigue importante",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Maux de téte",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Diarrhées",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Nausées et/ou vomissements",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Anosmie (perte de l'odorat)",
+        choices: ['Non','Oui'],
+        reponde: 1
+    },
+    {
+        question: "Agueusie (Perte du gout)",
+        choices: ['Non','Oui'],
+        reponde: 1
+    }];
     
     var questionCounter = 0; //Tracks question number
     var selections = []; //Array containing user choices
@@ -154,7 +131,6 @@ fetchDataQuestion();
       qElement.append(header);
       
       var question = $('<h3>').append(questions[index].question);
-
       qElement.append(question);
       
       var radioButtons = createRadios(index);
@@ -186,7 +162,6 @@ fetchDataQuestion();
     // Displays next requested element
     function displayNext() {
       quiz.fadeOut(function() {
-        
         $('#question').remove();
         
         if(questionCounter < questions.length){
@@ -216,7 +191,8 @@ fetchDataQuestion();
     
     // Computes score and returns a paragraph element to be displayed
     function displayScore() {
-      var score = $('<p>',{id: 'question'});      
+      var score = $('<p>',{id: 'question'});
+      
       var opTrue = 0;
       for (var i = 0; i < selections.length; i++) {
         if (selections[i] === questions[i].reponde) {
@@ -224,11 +200,8 @@ fetchDataQuestion();
         }
       }
       
-    score.append(opTrue +' '+ 'questions oui !!!');
-    for (let i = 0; i < opTrue; i++) {                
-        localStorage.setItem("qstTrue",questions[i].question);
-        console.log(localStorage.getItem("qstTrue"));
-    }
+    score.append( opTrue + '/' +
+        questions.length +' '+ 'Questions oui !!!');
     return score;
     }
 })();

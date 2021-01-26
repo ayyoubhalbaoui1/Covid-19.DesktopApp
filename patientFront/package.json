@@ -10,7 +10,9 @@
   "author": "brahim",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "electron": "^11.2.0",
+    "jQuery": "^1.7.4",
     "sweetalert2": "^10.13.1"
   }
 }

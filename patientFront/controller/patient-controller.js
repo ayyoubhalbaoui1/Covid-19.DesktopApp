@@ -1,6 +1,7 @@
 var patientAPI = 'http://localhost:3000/patient';
 const swal = require('sweetalert2');
 
+
 // Post new Patient 
 var form = document.getElementById('form');      
    
@@ -45,12 +46,15 @@ form.addEventListener('submit',function(e) {
             
         }).then(data =>{
             console.log(data);
-            console.log(data._id);
+            //console.log(data._id);
+            localStorage.setItem("id",data._id);
+            console.log(localStorage.getItem("id"));
 
             swal.fire({
                 icon: 'success',
                 title: data.first_name+" "+data.last_name +' A été ajouté',
                 showCancelButton: true,
+                // confirmButtonText:'<a href="'+patientAPI+'/'+id+'/test">Test</a>'
                 confirmButtonText:'<a href="test.html">Test</a>'
             })
             
