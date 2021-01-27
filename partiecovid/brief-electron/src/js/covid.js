@@ -6,6 +6,8 @@ const casretablie = document.querySelector(".recovered .value");
 const nvcasretablie = document.querySelector(".recovered .new-value");
 const mortss = document.querySelector(".deaths .value");
 const nvmortss = document.querySelector(".deaths .new-value");
+const startdate = document.getElementById("startdate");
+const enddate = document.getElementById("enddate");
 
 app_data = [],
 listdescas = [],
@@ -15,7 +17,7 @@ deaths = [],
 Dateeee = [];
 
 
-let user_country;
+let choicecountry;
 var requestOptions = {
   method: "GET",
 };
@@ -27,7 +29,7 @@ function executchart() {
   }
 
 function jibdata(country) {
-  user_country = country;
+  choicecountry = country;
 
     listdescas = [],
     listdesretablies = [],
@@ -36,7 +38,7 @@ function jibdata(country) {
     Dateeee = [];
 
   const api_fetch = async (country) => {
-    await fetch("https://api.covid19api.com/total/country/" + country + "/status/confirmed", requestOptions)
+    await fetch("https://api.covid19api.com/total/country/" + country + "/status/confirmed?from=" + startdate.value + "T00:00:00Z&to="+ enddate.value +"T00:00:00Z", requestOptions)
       .then((res) => {
         return res.json();
       })
@@ -47,7 +49,7 @@ function jibdata(country) {
         });
       });
 
-    await fetch("https://api.covid19api.com/total/country/" + country + "/status/recovered", requestOptions)
+    await fetch("https://api.covid19api.com/total/country/" + country + "/status/recovered?from=" + startdate.value + "T00:00:00Z&to="+ enddate.value +"T00:00:00Z", requestOptions)
       .then((res) => {
         return res.json();
       })
@@ -57,7 +59,7 @@ function jibdata(country) {
         });
       });
 
-    await fetch("https://api.covid19api.com/total/country/" + country + "/status/deaths",requestOptions)
+    await fetch("https://api.covid19api.com/total/country/" + country + "/status/deaths?from=" + startdate.value + "T00:00:00Z&to="+ enddate.value +"T00:00:00Z",requestOptions)
       .then((res) => {
         return res.json();
       })
@@ -71,15 +73,17 @@ function jibdata(country) {
   api_fetch(country);
 }
 
-jibdata(user_country);
+jibdata(choicecountry);
+
+const getmois = [
+  "Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre",
+];
 
 function Datee(dateString) {
     let date = new Date(dateString);
     return `${date.getDate()} ${getmois[date.getMonth()]}`;
   }
-const getmois = [
-  "Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre",
-];
+
 
 // Chartjs
 let my_chart;
@@ -132,7 +136,7 @@ function datamodif() {
     var nvtotalretabliee = totalretablie - listdesretablies[listdesretablies.length - 2];
     var totalmorts = listdesmorts[listdesmorts.length - 1];
     var nvtotalmortss = totalmorts - listdesmorts[listdesmorts.length - 2];
-    nompays.innerHTML = user_country;
+    nompays.innerHTML = choicecountry;
     castotal.innerHTML = castotall;
     nvcas.innerHTML = `+${nvcascomfirme}`;
     casretablie.innerHTML = totalretablie;
