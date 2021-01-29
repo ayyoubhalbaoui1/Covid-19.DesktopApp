@@ -5,10 +5,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"
         integrity="sha256-Mli7YfW2nzMHbdDJHhPd0sf+dxiCrf+TRekNSrfDJCY=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../assets/css/popup.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Service Statistique</title>
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
@@ -25,11 +26,17 @@
                 </a>
             </div>
             <div class="navbar-inner">
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <div class="collapse navbar-collapse active" id="sidenav-collapse-main">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
-                                <i class="ni ni-tv-2 text-primary"></i>
+                            <a class="nav-link active" href="statistique.html">
+                                <i class="ni ni-bullet-list-67 text-primary"></i>
+                                <span class="nav-link-text">Service Statistique</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="ni ni-tv-2 text-yellow"></i>
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
@@ -37,12 +44,6 @@
                             <a class="nav-link" href="profile.html">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text">Add Doctor</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="statistique.html">
-                                <i class="ni ni-bullet-list-67 text-yellow"></i>
-                                <span class="nav-link-text">Service Statistique</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -130,16 +131,13 @@
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                            <h6 class="h2 text-white d-inline-block mb-0">Covid-19</h6>
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="../views/dashboard.html">Dashboards</a></li>
+                                    <li class="breadcrumb-item"><a href="../views/statistique.html">Statistique</a></li>
                                 </ol>
                             </nav>
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="profile.html" class="btn btn-sm btn-neutral">Add New Doctor</a>
                         </div>
                     </div>
                     <div class="row">
@@ -167,31 +165,95 @@
                                     <h3 class="mb-0">Doctors Lists</h3>
                                 </div>
                                 <div class="col text-right">
-                                    <a href="#!" onClick="window.location.reload();" class="btn btn-sm btn-primary">See
-                                        all</a>
+                                    <button id="submit" type="button" class="btn btn-sm btn-primary"
+                                        onclick="Click()">Cherche</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table id="orders" class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First Name:</th>
-                                        <th scope="col">Last Name:</th>
-                                        <th scope="col">Phone:</th>
-                                        <th scope="col">Cin:</th>
-                                        <th scope="col">email:</th>
-                                        <th scope="col">Password:</th>
-                                        <th scope="col">Action:</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
+                        <div class="text-center p-4">
+                        <form action="">
+                            <select class="custom-select" id="countries">
+                            </select>
                         </div>
+                            <div id="click1" style="display: none;">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-stats">
+                                      <!-- Card body -->
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col text-center">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Des Morts</h5>
+                                            <span id="para1" class="h2 font-weight-bold mb-0"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-md-6">
+                                    <div class="card card-stats">
+                                      <!-- Card body -->
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col text-center">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Confirmés</h5>
+                                            <span id="para2" class="h2 font-weight-bold mb-0"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-md-6">
+                                    <div class="card card-stats">
+                                      <!-- Card body -->
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col text-center">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Récupérés</h5>
+                                            <span id="para3" class="h2 font-weight-bold mb-0"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-md-6">
+                                    <div class="card card-stats">
+                                      <!-- Card body -->
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col text-center">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Actifs</h5>
+                                            <span id="para4" class="h2 font-weight-bold mb-0"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-md-6">
+                                    <div class="card card-stats">
+                                      <!-- Card body -->
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col text-center">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Mise-à-jour</h5>
+                                            <span id="datee" class="h2 font-weight-bold mb-0"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <!-- <button id="submit" type="button"> search </button> -->
+
+
+
+
+
+
                     </div>
                 </div>
-                <div class="col-xl-4">
+                <div class="container-fluid">
+                    <div id="mapp" class="mapp map-canvas justify-content-center">
+                    </div>
 
                 </div>
             </div>
@@ -261,7 +323,7 @@
 
 
 
-
+    <script src="../script/map.js"></script>
 </body>
 
 
@@ -277,6 +339,12 @@
 <script src="../assets/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="../assets/vendor/chart.js/dist/Chart.extension.js"></script>
 <script src="../assets/js/argon.js?v=1.2.0"></script>
+
+<script>
+    function Click() {
+        document.getElementById('click1').style = "display: block; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;";
+    }
+</script>
 
 <script>
     if (typeof module === "object") {
