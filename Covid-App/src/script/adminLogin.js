@@ -38,3 +38,4 @@ function check() {
         window.location.href = '../views/dashboard.html';
     }
 }
+

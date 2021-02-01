@@ -22,7 +22,7 @@
         <div class="scrollbar-inner">
             <div class="sidenav-header  align-items-center">
                 <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+                    <img src="../assets/images/logo.png" class="navbar-brand-img" alt="...">
                 </a>
             </div>
             <div class="navbar-inner">
@@ -162,8 +162,9 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="mb-0">Doctors Lists</h3>
+                                    <h3 class="mb-0">Service Statistique | Map</h3>
                                 </div>
+
                                 <div class="col text-right">
                                     <button id="submit" type="button" class="btn btn-sm btn-primary"
                                         onclick="Click()">Cherche</button>
@@ -171,97 +172,94 @@
                             </div>
                         </div>
                         <div class="text-center p-4">
-                        <form action="">
-                            <select class="custom-select" id="countries">
-                            </select>
+                            <h2 class="mb-0">Sélectionner Pays</h2>
+                            <form action="">
+                                <select class="custom-select" id="countries">
+                                </select>
                         </div>
-                            <div id="click1" style="display: none;">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card card-stats">
-                                      <!-- Card body -->
-                                      <div class="card-body">
+                        <div id="click1" style="display: none;">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
                                         <div class="row">
-                                          <div class="col text-center">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Des Morts</h5>
-                                            <span id="para1" class="h2 font-weight-bold mb-0"></span>
-                                          </div>
+                                            <div class="col text-center">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Total Des Morts
+                                                </h5>
+                                                <span id="para1" class="h2 font-weight-bold mb-0"></span>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                  </div>
-                                  <div class="col-xl-3 col-md-6">
-                                    <div class="card card-stats">
-                                      <!-- Card body -->
-                                      <div class="card-body">
-                                        <div class="row">
-                                          <div class="col text-center">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Confirmés</h5>
-                                            <span id="para2" class="h2 font-weight-bold mb-0"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-xl-3 col-md-6">
-                                    <div class="card card-stats">
-                                      <!-- Card body -->
-                                      <div class="card-body">
-                                        <div class="row">
-                                          <div class="col text-center">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Récupérés</h5>
-                                            <span id="para3" class="h2 font-weight-bold mb-0"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-xl-3 col-md-6">
-                                    <div class="card card-stats">
-                                      <!-- Card body -->
-                                      <div class="card-body">
-                                        <div class="row">
-                                          <div class="col text-center">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Actifs</h5>
-                                            <span id="para4" class="h2 font-weight-bold mb-0"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-xl-3 col-md-6">
-                                    <div class="card card-stats">
-                                      <!-- Card body -->
-                                      <div class="card-body">
-                                        <div class="row">
-                                          <div class="col text-center">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Mise-à-jour</h5>
-                                            <span id="datee" class="h2 font-weight-bold mb-0"></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                </div>
                             </div>
-                            <!-- <button id="submit" type="button"> search </button> -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Confirmés
+                                                </h5>
+                                                <span id="para2" class="h2 font-weight-bold mb-0"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Récupérés
+                                                </h5>
+                                                <span id="para3" class="h2 font-weight-bold mb-0"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Les Cas Actifs
+                                                </h5>
+                                                <span id="para4" class="h2 font-weight-bold mb-0"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Mise-à-jour</h5>
+                                                <span id="datee" class="h2 font-weight-bold mb-0"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="mapp" class="mapp map-canvas">
+                                </div>
+                            </div>
 
-
-
-
-
+                        </div>
 
                     </div>
                 </div>
-                <div class="container-fluid">
-                    <div id="mapp" class="mapp map-canvas justify-content-center">
-                    </div>
 
-                </div>
             </div>
-
         </div>
-
         <div id="popup">
-
             <form id="form">
                 <button type="button" id="close" onclick="hide()">X</button>
                 <div class="container-fluid">

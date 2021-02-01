@@ -33,7 +33,7 @@
         let lat = response.data[1].Lat;
         let lon = response.data[1].Lon;
 
-        document.getElementById('mapp').innerHTML = `<iframe  src="http://maps.google.com/maps?q=${lat},${lon}&z=6&output=embed" style="width:60%;height:500px;"></iframe>`
+        document.getElementById('mapp').innerHTML = `<iframe  src="http://maps.google.com/maps?q=${lat},${lon}&z=6&output=embed" style="width:800px;height:500px;"></iframe>`
 
 
         // console.log(lon);
@@ -48,6 +48,7 @@
         document.getElementById('datee').innerHTML = response.data[1].Date;
         
         document.getElementById('para4').innerHTML = response.data[1].Active;
+        
 
 
 
