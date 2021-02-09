@@ -5,15 +5,23 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"
         integrity="sha256-Mli7YfW2nzMHbdDJHhPd0sf+dxiCrf+TRekNSrfDJCY=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../assets/css/popup.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <title>Service Statistique</title>
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
     <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -25,11 +33,23 @@
                 </a>
             </div>
             <div class="navbar-inner">
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <div class="collapse navbar-collapse active" id="sidenav-collapse-main">
                     <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="chart.html">
+                                <i class="ni ni-single-02  text-primary"></i>
+                                <span class="nav-link-text">Chart</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
-                                <i class="ni ni-tv-2 text-primary"></i>
+                            <a class="nav-link" href="statistique.html">
+                                <i class="ni ni-chart-pie-35 text-yellow"></i>
+                                <span class="nav-link-text">Service Statistique</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="ni ni-tv-2 text-yellow"></i>
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
@@ -37,18 +57,6 @@
                             <a class="nav-link" href="profile.html">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text">Add Doctor</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="statistique.html">
-                                <i class="ni ni-bullet-list-67 text-yellow"></i>
-                                <span class="nav-link-text">Service Statistique</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chart.html">
-                                <i class="ni ni-chart-pie-35 text-yellow"></i>
-                                <span class="nav-link-text">Chart</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -136,17 +144,14 @@
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                            <h6 class="h2 text-white d-inline-block mb-0">Covid-19</h6>
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="../views/dashboard.html">Dashboards</a></li>
+                                    <li class="breadcrumb-item"><a href="../views/statistique.html">Statistique</a></li>
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="profile.html" class="btn btn-sm btn-neutral">Add New Doctor</a>
-                        </div>
                     </div>
                     <div class="row">
 
@@ -159,115 +164,52 @@
 
         </div>
 
-        <div class="container-fluid mt--6">
-            <div class="row">
-
-
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="mb-0">Doctors Lists</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="#!" onClick="window.location.reload();" class="btn btn-sm btn-primary">See
-                                        all</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table id="orders" class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First Name:</th>
-                                        <th scope="col">Last Name:</th>
-                                        <th scope="col">Phone:</th>
-                                        <th scope="col">Cin:</th>
-                                        <th scope="col">email:</th>
-                                        <th scope="col">Password:</th>
-                                        <th scope="col">Action:</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-
-                </div>
-            </div>
-
+        <div class="change-country">Selectionez un Pays</div>
+        <div class="search-country hide">
+          <div class="country-list"></div>
         </div>
 
-        <div id="popup">
+        <input type="date" id="startdate" name="trip-start" value="2020-01-01" min="2020-01-01" max="2022-12-31">
+        <input type="date" id="enddate" name="trip-start" value="2021-01-01" min="2020-01-01" max="2022-12-31">
 
-            <form id="form">
-                <button type="button" id="close" onclick="hide()">X</button>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-8">
 
-                            <ul id="orders"></ul>
-                            <p><input class="form-control" type="text" hidden id="idUpdate"></p>
-                            <br>
+<div class="big_wrapper">
+  <div class="stats">
+    <div class="latest-report">
+      <div class="country">
+        <div class="name"></div>
+        
+        
+      </div>
+      <div class="total-cases">
+        <div class="title">Total des cas</div>
+        <div class="value"></div>
+        <div class="new-value"></div>
+      </div>
+      <div class="recovered">
+        <div class="title">Rétablie</div>
+        <div class="value"></div>
+        <div class="new-value"></div>
+      </div>
+      <div class="deaths">
+        <div class="title">Morts</div>
+        <div class="value"></div>
+        <div class="new-value"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <canvas id="Radarchart"></canvas>
+    </div>
+  </div>
+ 
+</div>
 
-                            <label for="">FIrst name:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="fname">
-                            <br>
-
-                            <label for="">Last name:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="lName">
-                            <br>
-
-                            <label for="">Phone:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="phone">
-                            <br>
-
-                            <label for="">Email:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="email">
-                            <br>
-
-                            <label for="">Cin:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="cin">
-                            <br>
-                            <label for="">Passwd:</label>
-                            <input style="width: 170%;" class="form-control" type="text" id="password">
-                            <br>
-                            <div class="col text-center">
-                                <button type="button" id="add-order" class="btn btn-primary">Edit</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
 
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <script src="../script/pays.js"></script>
+    <script src="../script/covid.js"></script> 
 </body>
 
 
@@ -285,12 +227,17 @@
 <script src="../assets/js/argon.js?v=1.2.0"></script>
 
 <script>
+    function Click() {
+        document.getElementById('click1').style = "display: block; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;";
+    }
+</script>
+
+<script>
     if (typeof module === "object") {
         window.module = module;
         module = undefined;
     }
 </script>
-<script src="../script/main.js"></script>
 <script>
     if (window.module) module = window.module;
 </script>
